@@ -1,13 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import { routes } from "./router/routes";
+import MainContextProvider from "./state/MainContext";
+import { ThemeProvider } from "@emotion/react";
+import { createTheme } from "@mui/material";
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
   <React.StrictMode>
-    <App />
+    <MainContextProvider>
+      <ThemeProvider theme={createTheme()}>
+        <RouterProvider router={createBrowserRouter(routes)} />
+      </ThemeProvider>
+    </MainContextProvider>
   </React.StrictMode>
 );
 
